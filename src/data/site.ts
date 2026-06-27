@@ -19,7 +19,7 @@ export const site = {
 
   // Where to reach you. Replace placeholders before going live.
   // Tip: use a dedicated address (e.g. a +portfolio alias) rather than your main inbox.
-  email: "you@example.com",
+  email: "ericagyemang.np@gmail.com",
   location: "United States",
 
   // Social / proof links. Set to "" to hide a link entirely.
