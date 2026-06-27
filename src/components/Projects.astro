@@ -1,0 +1,17 @@
+---
+import Section from "./Section.astro";
+import ProjectCard from "./ProjectCard.astro";
+import { projects } from "../data/projects";
+---
+
+<Section id="projects" eyebrow="Work" title="Projects">
+  <p class="mb-10 max-w-2xl text-base leading-relaxed text-muted">
+    Each repo is a sanitized, from-scratch showcase of a production pattern — the
+    transferable engineering, never proprietary logic. Status is honest: a link
+    only appears when there's something real behind it.
+  </p>
+
+  <div class="grid gap-5 md:grid-cols-2">
+    {projects.map((project) => <ProjectCard project={project} />)}
+  </div>
+</Section>

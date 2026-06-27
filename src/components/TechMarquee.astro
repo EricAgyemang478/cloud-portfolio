@@ -1,0 +1,43 @@
+---
+import { Icon } from "astro-icon/components";
+
+// Brand logos (Simple Icons, inlined at build) + their brand color for hover.
+const techs = [
+  { name: "simple-icons:cloudflare", label: "Cloudflare", color: "#F38020" },
+  { name: "simple-icons:docker", label: "Docker", color: "#2496ED" },
+  { name: "simple-icons:githubactions", label: "GitHub Actions", color: "#2088FF" },
+  { name: "simple-icons:terraform", label: "Terraform", color: "#844FBA" },
+  { name: "simple-icons:linux", label: "Linux", color: "#FCC624" },
+  { name: "simple-icons:nodedotjs", label: "Node.js", color: "#5FA04E" },
+  { name: "simple-icons:typescript", label: "TypeScript", color: "#3178C6" },
+  { name: "simple-icons:python", label: "Python", color: "#3776AB" },
+  { name: "simple-icons:postgresql", label: "PostgreSQL", color: "#4169E1" },
+  { name: "simple-icons:playwright", label: "Playwright", color: "#2EAD33" },
+  { name: "simple-icons:astro", label: "Astro", color: "#BC52EE" },
+  { name: "simple-icons:tailwindcss", label: "Tailwind CSS", color: "#06B6D4" },
+];
+
+// Render twice so the -50% keyframe loops seamlessly.
+const loop = [...techs, ...techs];
+---
+
+<div class="marquee" style="--marquee-duration: 46s">
+  <div class="marquee__track gap-3">
+    {
+      loop.map((t) => (
+        <div
+          class="logo group flex w-44 shrink-0 items-center justify-center gap-2.5 rounded-lg border border-border/70 bg-surface/60 py-3"
+          style={`--brand:${t.color}`}
+        >
+          <Icon
+            name={t.name}
+            class="size-5 text-faint transition-colors group-hover:text-[var(--brand)]"
+          />
+          <span class="font-mono text-sm text-faint transition-colors group-hover:text-text">
+            {t.label}
+          </span>
+        </div>
+      ))
+    }
+  </div>
+</div>

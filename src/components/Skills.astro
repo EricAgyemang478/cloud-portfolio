@@ -1,0 +1,30 @@
+---
+import Section from "./Section.astro";
+import TechMarquee from "./TechMarquee.astro";
+import { skillGroups } from "../data/skills";
+---
+
+<Section id="skills" eyebrow="Toolbox" title="Skills & tools I work with">
+  <div class="mb-10">
+    <TechMarquee />
+  </div>
+
+  <div class="grid gap-5 sm:grid-cols-2">
+    {
+      skillGroups.map((group) => (
+        <div class="card-glow rounded-xl border border-border bg-surface p-6">
+          <h3 class="font-mono text-sm font-semibold text-accent">
+            {group.title}
+          </h3>
+          <ul class="mt-4 flex flex-wrap gap-2">
+            {group.items.map((item) => (
+              <li class="rounded-md border border-border bg-surface-2 px-2.5 py-1 text-sm text-muted">
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))
+    }
+  </div>
+</Section>

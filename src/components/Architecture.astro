@@ -1,0 +1,68 @@
+---
+import Section from "./Section.astro";
+
+const steps = [
+  {
+    n: "01",
+    title: "Source",
+    body: "Push or PR to GitHub. main is the production branch; features land through pull requests.",
+  },
+  {
+    n: "02",
+    title: "CI — build & check",
+    body: "GitHub Actions runs npm ci, astro check (type-safety), and astro build on a pinned Node version.",
+  },
+  {
+    n: "03",
+    title: "Deploy",
+    body: "Wrangler ships the static build to Cloudflare Pages — production on main, a unique preview URL on every PR.",
+  },
+  {
+    n: "04",
+    title: "Edge delivery",
+    body: "Cloudflare serves the site globally over HTTPS with automatic cache invalidation on each deploy.",
+  },
+];
+
+const principles = [
+  "No secrets in the repo — credentials live only in GitHub Actions secrets",
+  "Reproducible builds: committed lockfile + Node pinned via .nvmrc",
+  "Type-checked at build time; a broken type fails the deploy",
+  "Every PR gets an isolated preview environment before merge",
+];
+---
+
+<Section id="architecture" eyebrow="Infrastructure" title="How this site ships">
+  <p class="mb-10 max-w-2xl text-base leading-relaxed text-muted">
+    The portfolio is also a working example. There's no click-ops — the entire
+    deploy is defined in version control and runs automatically on every change.
+  </p>
+
+  <ol class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+    {
+      steps.map((step) => (
+        <li class="card-glow rounded-xl border border-border bg-surface p-5">
+          <span class="font-mono text-xs text-accent">{step.n}</span>
+          <h3 class="mt-2 font-semibold text-text">{step.title}</h3>
+          <p class="mt-2 text-sm leading-relaxed text-muted">{step.body}</p>
+        </li>
+      ))
+    }
+  </ol>
+
+  <div class="mt-6 rounded-xl border border-border bg-surface p-6">
+    <h3 class="font-mono text-sm font-semibold text-accent">
+      Engineering principles
+    </h3>
+    <ul class="mt-4 grid gap-2 sm:grid-cols-2">
+      {
+        principles.map((p) => (
+          <li class="flex gap-2 text-sm text-muted">
+            <span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-accent" />
+            <span>{p}</span>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</Section>

@@ -1,0 +1,65 @@
+---
+import { Icon } from "astro-icon/components";
+import { site } from "../data/site";
+
+const year = new Date().getFullYear();
+
+const social = [
+  { href: site.links.github, label: "GitHub", icon: "lucide:github" },
+  { href: site.links.linkedin, label: "LinkedIn", icon: "lucide:linkedin" },
+  { href: site.links.resume, label: "Résumé", icon: "lucide:file-text" },
+].filter((s) => s.href);
+---
+
+<footer
+  id="contact"
+  class="scroll-mt-20 border-t border-border/50 py-20 sm:py-24"
+>
+  <div data-reveal>
+    <div class="mx-auto max-w-6xl px-6">
+      <p class="font-mono text-xs uppercase tracking-[0.2em] text-accent">
+        Contact
+      </p>
+      <h2
+        class="mt-3 max-w-2xl text-2xl font-semibold tracking-tight text-text sm:text-3xl"
+      >
+        Let's build something reliable.
+      </h2>
+      <p class="mt-4 flex max-w-xl items-center gap-2 text-muted">
+        <span class="ping-dot"></span>
+        Open to DevOps, platform, and automation roles. The fastest way to reach
+        me:
+      </p>
+
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a
+          href={`mailto:${site.email}`}
+          class="inline-flex items-center gap-2 rounded-lg bg-accent px-5 py-2.5 text-sm font-semibold text-accent-contrast transition hover:opacity-90"
+        >
+          <Icon name="lucide:mail" class="size-4" />
+          {site.email}
+        </a>
+        {
+          social.map((s) => (
+            <a
+              href={s.href}
+              target="_blank"
+              rel="noreferrer"
+              class="inline-flex items-center gap-2 rounded-lg border border-border-strong px-5 py-2.5 text-sm font-medium text-text transition hover:border-accent hover:text-accent"
+            >
+              <Icon name={s.icon} class="size-4" />
+              {s.label}
+            </a>
+          ))
+        }
+      </div>
+
+      <div
+        class="mt-16 flex flex-col items-start justify-between gap-2 border-t border-border pt-6 text-sm text-faint sm:flex-row sm:items-center"
+      >
+        <p>© {year} {site.name}</p>
+        <p class="font-mono">Astro · Cloudflare Pages · GitHub Actions</p>
+      </div>
+    </div>
+  </div>
+</footer>

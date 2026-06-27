@@ -1,0 +1,123 @@
+---
+import { Icon } from "astro-icon/components";
+import Parallax from "./motion/Parallax.tsx";
+import { site } from "../data/site";
+
+const social = [
+  { href: site.links.github, label: "GitHub", icon: "lucide:github" },
+  { href: site.links.linkedin, label: "LinkedIn", icon: "lucide:linkedin" },
+  { href: site.links.resume, label: "Résumé", icon: "lucide:file-text" },
+].filter((s) => s.href);
+---
+
+<section id="top" class="relative">
+  <Parallax client:load distance={50} class="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+    <div class="absolute inset-x-0 -top-[15%] h-[130%] bg-grid"></div>
+  </Parallax>
+
+  <div class="mx-auto max-w-6xl px-6 pb-16 pt-16 sm:pt-24">
+    <div class="grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
+      <!-- Left: intro -->
+      <div>
+        <p
+          class="mb-6 inline-flex items-center gap-2.5 rounded-full border border-border bg-surface/70 px-3 py-1 font-mono text-xs text-muted backdrop-blur"
+        >
+          <span class="ping-dot"></span>
+          Open to DevOps / Platform roles
+        </p>
+
+        <h1
+          class="text-4xl font-bold leading-[1.05] tracking-tight text-text sm:text-6xl"
+        >
+          {site.name}
+          <span class="mt-2 block text-muted">{site.role}</span>
+        </h1>
+
+        <p class="mt-6 max-w-xl text-lg leading-relaxed text-muted">
+          {site.tagline}
+        </p>
+
+        <div class="mt-9 flex flex-wrap items-center gap-3">
+          <a
+            href="#projects"
+            class="group inline-flex items-center gap-2 rounded-lg bg-accent px-5 py-2.5 text-sm font-semibold text-accent-contrast transition hover:opacity-90"
+          >
+            View projects
+            <Icon
+              name="lucide:arrow-right"
+              class="size-4 transition-transform group-hover:translate-x-0.5"
+            />
+          </a>
+          {
+            social.map((s) => (
+              <a
+                href={s.href}
+                target="_blank"
+                rel="noreferrer"
+                class="inline-flex items-center gap-2 rounded-lg border border-border-strong px-4 py-2.5 text-sm font-medium text-text transition hover:border-accent hover:text-accent"
+              >
+                <Icon name={s.icon} class="size-4" />
+                {s.label}
+              </a>
+            ))
+          }
+        </div>
+      </div>
+
+      <!-- Right: live deploy terminal -->
+      <div class="relative">
+        <div
+          class="overflow-hidden rounded-xl border border-border bg-[#0c0f15] shadow-2xl shadow-black/50"
+        >
+          <div
+            class="flex items-center gap-2 border-b border-border bg-surface px-4 py-3"
+          >
+            <span class="h-3 w-3 rounded-full bg-[#ff5f57]"></span>
+            <span class="h-3 w-3 rounded-full bg-[#febc2e]"></span>
+            <span class="h-3 w-3 rounded-full bg-[#28c840]"></span>
+            <span class="ml-2 font-mono text-xs text-faint"
+              >deploy — cloudflare pages</span
+            >
+          </div>
+
+          <div
+            class="overflow-x-auto p-5 font-mono text-[13px] leading-7 text-text"
+            aria-hidden="true"
+          >
+            <div class="term-line">
+              <span class="text-faint">$</span> git push origin main
+            </div>
+            <div class="term-line">
+              <span class="text-accent">▶</span> github actions
+              <span class="text-faint">· build</span>
+            </div>
+            <div class="term-line pl-4">
+              <span class="text-accent">✓</span> npm ci
+              <span class="text-faint">— deps installed</span>
+            </div>
+            <div class="term-line pl-4">
+              <span class="text-accent">✓</span> astro check
+              <span class="text-faint">— 0 errors</span>
+            </div>
+            <div class="term-line pl-4">
+              <span class="text-accent">✓</span> astro build
+              <span class="text-faint">— 1 page</span>
+            </div>
+            <div class="term-line">
+              <span class="text-accent">▶</span> wrangler
+              <span class="text-faint">· deploy</span>
+            </div>
+            <div class="term-line pl-4">
+              <span class="text-accent">✓</span> dist/ → pages
+            </div>
+            <div class="term-line">
+              <span class="text-accent">●</span> live
+              <span class="text-faint">https://…pages.dev</span>
+              <span class="cursor text-accent">▋</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,51 @@
+name: Deploy
+
+# Build on every push and PR; deploy to Cloudflare Pages.
+#   - push to main      -> production deployment
+#   - pull request       -> isolated preview deployment (unique URL)
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+# Cancel an in-flight run if a newer commit lands on the same ref.
+concurrency:
+  group: deploy-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  deployments: write
+  pull-requests: write # lets Wrangler comment the preview URL on the PR
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build (type-check + static build)
+        run: npm run build
+
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          # The project name must match the Pages project you create in Cloudflare.
+          # --branch drives prod vs preview: main = production, anything else = preview.
+          command: >-
+            pages deploy dist
+            --project-name=cloud-portfolio
+            --branch=${{ github.head_ref || github.ref_name }}

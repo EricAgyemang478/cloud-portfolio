@@ -1,0 +1,53 @@
+---
+import { Icon } from "astro-icon/components";
+import { site } from "../data/site";
+
+const nav = [
+  { href: "#about", label: "About" },
+  { href: "#skills", label: "Skills" },
+  { href: "#projects", label: "Projects" },
+  { href: "#architecture", label: "How it ships" },
+  { href: "#contact", label: "Contact" },
+];
+---
+
+<header
+  class="sticky top-0 z-40 border-b border-border/60 bg-bg/70 backdrop-blur"
+>
+  <div class="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+    <a
+      href="#top"
+      class="inline-flex items-center gap-2.5 font-mono text-sm font-semibold"
+    >
+      <span
+        class="grid h-8 w-8 place-items-center rounded-lg border border-accent/40 text-accent"
+        >EO</span
+      >
+      <span class="text-text">{site.name}</span>
+    </a>
+
+    <nav class="hidden items-center gap-7 text-sm text-muted md:flex">
+      {
+        nav.map((n) => (
+          <a href={n.href} data-nav class="transition-colors hover:text-text">
+            {n.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    {
+      site.links.github && (
+        <a
+          href={site.links.github}
+          target="_blank"
+          rel="noreferrer"
+          class="inline-flex items-center gap-2 rounded-lg border border-border-strong px-3.5 py-1.5 text-sm font-medium text-text transition hover:border-accent hover:text-accent"
+        >
+          <Icon name="lucide:github" class="size-4" />
+          <span class="hidden sm:inline">GitHub</span>
+        </a>
+      )
+    }
+  </div>
+</header>

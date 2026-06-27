@@ -1,0 +1,35 @@
+---
+import Section from "./Section.astro";
+import { site } from "../data/site";
+---
+
+<Section id="about" eyebrow="About" title="I ship and operate what I build">
+  <div class="grid gap-10 md:grid-cols-[1.6fr_1fr]">
+    <div class="space-y-4 text-base leading-relaxed text-muted">
+      {site.bio.map((p) => <p>{p}</p>)}
+    </div>
+
+    <dl class="space-y-5 rounded-xl border border-border bg-surface p-6 text-sm">
+      <div>
+        <dt class="font-mono text-xs uppercase tracking-wider text-faint">
+          Focus
+        </dt>
+        <dd class="mt-1 text-text">DevOps · Platform · Automation</dd>
+      </div>
+      <div>
+        <dt class="font-mono text-xs uppercase tracking-wider text-faint">
+          Based in
+        </dt>
+        <dd class="mt-1 text-text">{site.location}</dd>
+      </div>
+      <div>
+        <dt class="font-mono text-xs uppercase tracking-wider text-faint">
+          Currently
+        </dt>
+        <dd class="mt-1 text-text">
+          Open-sourcing production patterns as public showcases
+        </dd>
+      </div>
+    </dl>
+  </div>
+</Section>
