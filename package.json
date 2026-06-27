@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "description": "Eric Opoku - DevOps & Platform Engineer. Astro static site, shipped to Cloudflare Pages via GitHub Actions.",
+  "description": "Eric Agyemang - DevOps & Platform Engineer. Astro static site, shipped to Cloudflare Pages via GitHub Actions.",
   "engines": {
     "node": ">=20"
   },

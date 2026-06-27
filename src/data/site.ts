@@ -6,7 +6,7 @@
  * post on a billboard. Use a dedicated contact address, not a primary inbox.
  */
 export const site = {
-  name: "Eric Opoku",
+  name: "Eric Agyemang",
   role: "DevOps & Platform Engineer",
   // The one-liner under your name. Keep it concrete.
   tagline:
@@ -24,8 +24,8 @@ export const site = {
 
   // Social / proof links. Set to "" to hide a link entirely.
   links: {
-    github: "https://github.com/your-handle",
-    linkedin: "https://www.linkedin.com/in/your-handle",
+    github: "https://github.com/EricAgyemang478",
+    linkedin: "https://www.linkedin.com/in/ericagyemang4798/",
     // Drop a PDF in /public (e.g. public/eric-opoku-resume.pdf) and set the path
     // here (e.g. "/eric-opoku-resume.pdf") to light up the Résumé section and the
     // hero/footer résumé buttons. Leave "" to show the "coming soon" placeholder.

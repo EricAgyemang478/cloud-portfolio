@@ -2,98 +2,108 @@ export type ProjectStatus = "live" | "building" | "planned";
 
 export interface Project {
   title: string;
-  blurb: string;
-  /** Short, scannable proof points — what the project actually demonstrates. */
-  highlights: string[];
+  /** One line: what it is. */
+  tagline: string;
+  /** The use case — the problem it solves and why it matters. */
+  problem: string;
+  /** How it's built — the decisions that show depth. */
+  architecture: string[];
   tags: string[];
   status: ProjectStatus;
-  /** Omit when there is nothing real to link yet — the card stays honest. */
+  /** Real links only — omitted until there's something behind them. */
   repo?: string;
   demo?: string;
 }
 
 /**
- * Each public repo is a sanitized, from-scratch showcase of a pattern — never a
- * copy of a private project. The edge stays private; the craft goes public.
- *
- * Statuses are honest by design:
- *   live     -> shipped, has a real link
- *   building -> in progress, link appears when it's real
- *   planned  -> scoped, not started
+ * Each public repo is a sanitized, from-scratch showcase of a production pattern —
+ * the transferable engineering, never proprietary logic. Live projects link to
+ * real repos; planned ones state the intended use case + architecture honestly.
  */
 export const projects: Project[] = [
   {
     title: "This Portfolio",
-    blurb:
-      "The site you're reading. A static Astro build shipped to Cloudflare Pages by an explicit GitHub Actions pipeline — preview deploys on every PR, production on merge to main.",
-    highlights: [
-      "Infrastructure-as-pipeline: build, type-check, deploy in CI",
-      "Per-PR preview environments via Wrangler",
-      "Zero secrets in the repo; pinned Node; reproducible builds",
+    tagline: "The site you're reading — and a working demo of a real deploy pipeline.",
+    problem:
+      "A portfolio should prove the craft, not just list it. So this site ships itself the way a production frontend ships — no manual uploads, no click-ops.",
+    architecture: [
+      "Static Astro build (zero client JS by default) + Tailwind v4 design tokens.",
+      "GitHub Actions pipeline: install → type-check → build → deploy on every push; a unique preview URL per pull request.",
+      "Served from Cloudflare Pages' global edge with automatic HTTPS and cache invalidation.",
+      "Motion (Framer Motion) islands for scroll-linked animation — reduced-motion and no-JS safe.",
     ],
-    tags: ["Astro", "Tailwind", "GitHub Actions", "Cloudflare Pages"],
+    tags: ["Astro", "Tailwind", "TypeScript", "GitHub Actions", "Cloudflare Pages"],
     status: "live",
-    repo: "https://github.com/your-handle/cloud-portfolio",
+    repo: "https://github.com/EricAgyemang478/cloud-portfolio",
     demo: "https://cloud-portfolio.pages.dev",
   },
   {
     title: "MCP Server Template",
-    blurb:
-      "A production-ready Model Context Protocol server starter: typed tools, structured errors, tests, a multi-stage Docker image, and a CI pipeline — the boring parts done right so the next MCP server starts at mile 10.",
-    highlights: [
-      "Typed tool definitions with schema-validated inputs",
-      "Multi-stage Docker build, runs as non-root",
-      "Test + lint + build gates in CI before publish",
+    tagline: "A production-ready starting point for Model Context Protocol (MCP) servers.",
+    problem:
+      "MCP is becoming the standard way AI clients call external tools, and every new server rewrites the same scaffolding. This is the boring-but-critical 80% done right, so the next one starts at mile 10.",
+    architecture: [
+      "High-level MCP SDK with zod-validated tool schemas — one definition drives validation, typing, and tool discovery.",
+      "Construction is separated from transport, so the same server is tested over an in-memory transport with no mocks.",
+      "Errors contained per call; stdout reserved for the protocol, logs to stderr.",
+      "Multi-stage, non-root Docker image + CI (lint, type-check, test, build).",
     ],
-    tags: ["TypeScript", "MCP", "Docker", "Vitest", "GitHub Actions"],
-    status: "building",
+    tags: ["TypeScript", "MCP", "zod", "Docker", "node:test", "GitHub Actions"],
+    status: "live",
+    repo: "https://github.com/EricAgyemang478/mcp-server-template",
+  },
+  {
+    title: "leakguard",
+    tagline: "A zero-dependency secret scanner that stops credentials before they go public.",
+    problem:
+      "A leaked key in git history is irreversible — public commits are scraped within minutes and the only fix is rotation. leakguard catches secrets at commit time, when they're still cheap to fix.",
+    architecture: [
+      "Three detection layers: 90 provider rules + Shannon-entropy detection for unknown secrets + sensitive-filename rules.",
+      "Runs as a CLI, a git pre-commit/pre-push hook, and a GitHub Action — defense at every stage.",
+      "Entropy false positives tamed with guards (hashes, integrity sums, PEM/public keys, base64-decode check).",
+      "Ruleset built via a generate → adversarial-corpus → gap-audit loop; verified by per-rule + corpus tests (43 real secrets flag, 39 decoys stay clean). Zero runtime dependencies.",
+    ],
+    tags: ["TypeScript", "Security", "DevSecOps", "CLI", "GitHub Actions"],
+    status: "live",
+    repo: "https://github.com/EricAgyemang478/leakguard",
   },
   {
     title: "Multi-Provider AI Router",
-    blurb:
-      "A resilient LLM gateway: route across providers with automatic fallback, retries with backoff, and per-call cost tracking — so one provider outage or price spike never takes the app down.",
-    highlights: [
-      "Provider-agnostic interface with health-aware fallback",
-      "Token + cost accounting per request",
-      "Timeouts, retries, and circuit-breaking built in",
+    tagline: "A resilient gateway that routes across multiple LLM providers.",
+    problem:
+      "Apps that depend on a single AI provider break when it has an outage, rate-limits, or a price spike. This routes across providers so the app stays up and costs stay visible.",
+    architecture: [
+      "Provider-agnostic interface with health-aware fallback across OpenAI / Anthropic / OpenRouter / Gemini.",
+      "Per-request token and cost accounting; timeouts, retries with backoff, and circuit-breaking.",
+      "Extracted from production AI systems — the generic routing layer only, never the business logic.",
     ],
-    tags: ["TypeScript", "Node.js", "OpenRouter", "Observability"],
+    tags: ["TypeScript", "Node.js", "LLM", "Resilience", "Observability"],
     status: "planned",
   },
   {
-    title: "Video to Social Cuts Pipeline",
-    blurb:
-      "An FFmpeg-driven engine that turns one long recording into platform-ready vertical and horizontal cuts with burned-in captions and branded overlays — containerized and reproducible.",
-    highlights: [
-      "Deterministic FFmpeg graph, yuv420p / H.264 outputs",
-      "Caption burn-in and overlay compositing",
-      "Runs the same on a laptop or in a container",
+    title: "Video → Social Cuts Pipeline",
+    tagline: "Turns one long recording into platform-ready social cuts, automatically.",
+    problem:
+      "Manually editing a long video into vertical Reels/Shorts with captions is hours of repetitive work. This automates the reframe, format, and caption burn-in.",
+    architecture: [
+      "Deterministic FFmpeg graph: reframe, overlay, and burn captions; H.264 / yuv420p outputs every platform accepts.",
+      "Containerized so it runs identically on a laptop or in CI.",
+      "Config-driven cut list and branded overlay templates.",
     ],
     tags: ["FFmpeg", "Node.js", "Docker", "Media"],
     status: "planned",
   },
   {
     title: "Browser Automation Framework",
-    blurb:
-      "A reusable Playwright harness for driving real web apps headlessly: typed actions, retry on flake, structured output, and screenshots as evidence — the backbone behind several automations.",
-    highlights: [
-      "Typed page-object actions with retry/backoff",
-      "Structured JSON results + screenshot artifacts",
-      "Headless or headed, CI-friendly",
+    tagline: "A reusable Playwright harness for driving real web apps headlessly.",
+    problem:
+      "One-off scraping and automation scripts rot fast. This is the durable backbone: typed actions, retries on flake, structured output, and evidence for every run.",
+    architecture: [
+      "Typed page-object actions with retry/backoff on flake.",
+      "Structured JSON results plus screenshot artifacts for every run.",
+      "Headless or headed, and CI-friendly.",
     ],
     tags: ["Playwright", "TypeScript", "Automation"],
-    status: "planned",
-  },
-  {
-    title: "Scheduled Serverless Jobs",
-    blurb:
-      "Infrastructure-as-code for reliable scheduled work on the edge: Cloudflare Cron Triggers wired to Workers, with logging and alerting, defined entirely in version control.",
-    highlights: [
-      "Cron + Worker pattern defined in IaC",
-      "Structured logs and failure alerting",
-      "One command to reproduce the whole stack",
-    ],
-    tags: ["Cloudflare Workers", "Cron", "Terraform", "TypeScript"],
     status: "planned",
   },
 ];

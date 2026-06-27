@@ -110,4 +110,4 @@ Deploys run automatically once the two secrets below exist. See
 
 ## License
 
-[MIT](./LICENSE) © Eric Opoku
+[MIT](./LICENSE) © Eric Agyemang
