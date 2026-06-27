@@ -82,11 +82,12 @@ export const projects: Project[] = [
     problem:
       "Apps that depend on a single AI provider break when it has an outage, rate-limits, or a price spike. This routes across providers so the app stays up and costs stay visible.",
     architecture: [
-      "Provider-agnostic adapters (OpenAI / Anthropic / OpenRouter over fetch) behind one interface — swap providers without touching app code.",
-      "Automatic fallback chain with retries (backoff + jitter), per-provider circuit breaking, and per-attempt + terminal overall deadlines.",
-      "Per-call token + cost accounting and lifecycle events; resilience semantics adversarially audited and locked by a 22-test failure-mode matrix. Zero runtime dependencies.",
+      "Redundancy: provider-agnostic adapters (OpenAI / Anthropic / OpenRouter over fetch) in an ordered fallback chain — no single provider is a point of failure.",
+      "Resilience: retries (backoff + jitter), per-provider circuit breaking, and per-attempt + terminal overall deadlines.",
+      "Idempotency: an idempotency key coalesces concurrent identical calls into one upstream request — a retry never double-charges.",
+      "Observability: lifecycle events, a pull-based metrics() snapshot, and a per-call audit trail. Adversarially audited; 24-test failure-mode matrix; zero runtime deps.",
     ],
-    tags: ["TypeScript", "Node.js", "LLM", "Resilience", "Zero-deps"],
+    tags: ["TypeScript", "Resilience", "Idempotency", "Observability", "Zero-deps"],
     status: "live",
     repo: "https://github.com/EricAgyemang478/llm-router",
   },

@@ -51,6 +51,17 @@ flowchart LR
 | Deploy tool | [Wrangler](https://developers.cloudflare.com/workers/wrangler/) | First-class Cloudflare Pages deploys        |
 | Host        | Cloudflare Pages                                                | Free, global edge, automatic HTTPS          |
 
+## Enterprise architecture
+
+The deploy pipeline applies the same properties a production frontend needs:
+
+| Pillar | How the pipeline applies it |
+| --- | --- |
+| **Resilience** | build-time safety — `astro check` fails the deploy on a broken type instead of shipping it |
+| **Redundancy** | global edge delivery + isolated per-PR preview environments separate from production |
+| **Observability** | every deploy is a visible, re-runnable GitHub Actions record |
+| **Idempotency** | reproducible builds (committed lockfile + Node pinned via `.nvmrc`) — the same commit always produces the same artifact |
+
 ## Local development
 
 ```bash
