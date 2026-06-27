@@ -82,12 +82,13 @@ export const projects: Project[] = [
     problem:
       "Apps that depend on a single AI provider break when it has an outage, rate-limits, or a price spike. This routes across providers so the app stays up and costs stay visible.",
     architecture: [
-      "Provider-agnostic interface with health-aware fallback across OpenAI / Anthropic / OpenRouter / Gemini.",
-      "Per-request token and cost accounting; timeouts, retries with backoff, and circuit-breaking.",
-      "Extracted from production AI systems — the generic routing layer only, never the business logic.",
+      "Provider-agnostic adapters (OpenAI / Anthropic / OpenRouter over fetch) behind one interface — swap providers without touching app code.",
+      "Automatic fallback chain with retries (backoff + jitter), per-provider circuit breaking, and per-attempt + terminal overall deadlines.",
+      "Per-call token + cost accounting and lifecycle events; resilience semantics adversarially audited and locked by a 22-test failure-mode matrix. Zero runtime dependencies.",
     ],
-    tags: ["TypeScript", "Node.js", "LLM", "Resilience", "Observability"],
-    status: "planned",
+    tags: ["TypeScript", "Node.js", "LLM", "Resilience", "Zero-deps"],
+    status: "live",
+    repo: "https://github.com/EricAgyemang478/llm-router",
   },
   {
     title: "Video → Social Cuts Pipeline",
