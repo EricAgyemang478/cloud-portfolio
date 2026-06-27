@@ -19,7 +19,7 @@ gh repo create cloud-portfolio --public --source=. --remote=origin --push
 Or manually: create an empty `cloud-portfolio` repo on GitHub, then:
 
 ```bash
-git remote add origin https://github.com/<your-handle>/cloud-portfolio.git
+git remote add origin https://github.com/<EricAgyemang478>/cloud-portfolio.git
 git push -u origin main
 ```
 
@@ -58,10 +58,10 @@ Copy the token now — you can't see it again.
 
 Repo → **Settings** → **Secrets and variables** → **Actions** → **New repository secret**:
 
-| Name                    | Value              |
-| ----------------------- | ------------------ |
-| `CLOUDFLARE_API_TOKEN`  | the token from §4  |
-| `CLOUDFLARE_ACCOUNT_ID` | the account ID     |
+| Name                    | Value             |
+| ----------------------- | ----------------- |
+| `CLOUDFLARE_API_TOKEN`  | the token from §4 |
+| `CLOUDFLARE_ACCOUNT_ID` | the account ID    |
 
 Or from the CLI:
 
@@ -92,4 +92,4 @@ project can cost, and entirely optional.
 
 - `src/data/site.ts` — real email (use a dedicated alias), GitHub + LinkedIn URLs
 - `astro.config.mjs` — `site:` → your real URL
-- `public/robots.txt` and `README.md` — swap the `.pages.dev` URL and `your-handle`
+- `public/robots.txt` and `README.md` — swap the `.pages.dev` URL and `EricAgyemang478`

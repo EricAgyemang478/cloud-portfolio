@@ -1,6 +1,6 @@
 # Cloud Portfolio
 
-[![Deploy](https://img.shields.io/github/actions/workflow/status/your-handle/cloud-portfolio/deploy.yml?branch=main&label=deploy)](https://github.com/your-handle/cloud-portfolio/actions/workflows/deploy.yml)
+[![Deploy](https://img.shields.io/github/actions/workflow/status/EricAgyemang478/cloud-portfolio/deploy.yml?branch=main&label=deploy)](https://github.com/EricAgyemang478/cloud-portfolio/actions/workflows/deploy.yml)
 [![Built with Astro](https://img.shields.io/badge/built%20with-Astro-0a0c10)](https://astro.build)
 [![License: MIT](https://img.shields.io/badge/license-MIT-34d399)](./LICENSE)
 
@@ -43,13 +43,13 @@ flowchart LR
     H --> I
 ```
 
-| Layer       | Choice                              | Why                                        |
-| ----------- | ----------------------------------- | ------------------------------------------ |
-| Framework   | [Astro](https://astro.build)        | Ships zero JS by default — fast static HTML |
-| Styling     | [Tailwind CSS v4](https://tailwindcss.com) | One-file design tokens, no CSS sprawl |
-| CI/CD       | GitHub Actions                      | Pipeline lives next to the code            |
-| Deploy tool | [Wrangler](https://developers.cloudflare.com/workers/wrangler/) | First-class Cloudflare Pages deploys |
-| Host        | Cloudflare Pages                    | Free, global edge, automatic HTTPS         |
+| Layer       | Choice                                                          | Why                                         |
+| ----------- | --------------------------------------------------------------- | ------------------------------------------- |
+| Framework   | [Astro](https://astro.build)                                    | Ships zero JS by default — fast static HTML |
+| Styling     | [Tailwind CSS v4](https://tailwindcss.com)                      | One-file design tokens, no CSS sprawl       |
+| CI/CD       | GitHub Actions                                                  | Pipeline lives next to the code             |
+| Deploy tool | [Wrangler](https://developers.cloudflare.com/workers/wrangler/) | First-class Cloudflare Pages deploys        |
+| Host        | Cloudflare Pages                                                | Free, global edge, automatic HTTPS          |
 
 ## Local development
 
@@ -59,12 +59,12 @@ npm install
 npm run dev        # http://localhost:4321
 ```
 
-| Command             | Action                                        |
-| ------------------- | --------------------------------------------- |
-| `npm run dev`       | Start the dev server                          |
-| `npm run build`     | Type-check (`astro check`) then build to `dist/` |
-| `npm run preview`   | Serve the production build locally            |
-| `npm run format`    | Format the project with Prettier              |
+| Command           | Action                                           |
+| ----------------- | ------------------------------------------------ |
+| `npm run dev`     | Start the dev server                             |
+| `npm run build`   | Type-check (`astro check`) then build to `dist/` |
+| `npm run preview` | Serve the production build locally               |
+| `npm run format`  | Format the project with Prettier                 |
 
 ## Making it yours
 
@@ -87,10 +87,10 @@ switch from "coming soon" to **Download / View** automatically.
 Deploys run automatically once the two secrets below exist. See
 [`DEPLOYMENT.md`](DEPLOYMENT.md) for the full first-time setup walkthrough.
 
-| GitHub Actions secret    | Where it comes from                              |
-| ------------------------ | ------------------------------------------------ |
-| `CLOUDFLARE_API_TOKEN`   | Cloudflare → My Profile → API Tokens (Pages: Edit) |
-| `CLOUDFLARE_ACCOUNT_ID`  | Cloudflare dashboard → Workers & Pages → account ID |
+| GitHub Actions secret   | Where it comes from                                 |
+| ----------------------- | --------------------------------------------------- |
+| `CLOUDFLARE_API_TOKEN`  | Cloudflare → My Profile → API Tokens (Pages: Edit)  |
+| `CLOUDFLARE_ACCOUNT_ID` | Cloudflare dashboard → Workers & Pages → account ID |
 
 ## Project structure
 

@@ -7,10 +7,8 @@ interface Props {
   description?: string;
 }
 
-const {
-  title = `${site.name} — ${site.role}`,
-  description = site.tagline,
-} = Astro.props;
+const { title = `${site.name} — ${site.role}`, description = site.tagline } =
+  Astro.props;
 
 const canonical = new URL(Astro.url.pathname, Astro.site ?? site.siteUrl).href;
 ---
@@ -51,7 +49,6 @@ const canonical = new URL(Astro.url.pathname, Astro.site ?? site.siteUrl).href;
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
-
   </head>
   <body class="min-h-screen">
     <a

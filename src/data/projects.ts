@@ -23,7 +23,8 @@ export interface Project {
 export const projects: Project[] = [
   {
     title: "This Portfolio",
-    tagline: "The site you're reading — and a working demo of a real deploy pipeline.",
+    tagline:
+      "The site you're reading — and a working demo of a real deploy pipeline.",
     problem:
       "A portfolio should prove the craft, not just list it. So this site ships itself the way a production frontend ships — no manual uploads, no click-ops.",
     architecture: [
@@ -32,14 +33,21 @@ export const projects: Project[] = [
       "Served from Cloudflare Pages' global edge with automatic HTTPS and cache invalidation.",
       "Motion (Framer Motion) islands for scroll-linked animation — reduced-motion and no-JS safe.",
     ],
-    tags: ["Astro", "Tailwind", "TypeScript", "GitHub Actions", "Cloudflare Pages"],
+    tags: [
+      "Astro",
+      "Tailwind",
+      "TypeScript",
+      "GitHub Actions",
+      "Cloudflare Pages",
+    ],
     status: "live",
     repo: "https://github.com/EricAgyemang478/cloud-portfolio",
     demo: "https://cloud-portfolio.pages.dev",
   },
   {
     title: "MCP Server Template",
-    tagline: "A production-ready starting point for Model Context Protocol (MCP) servers.",
+    tagline:
+      "A production-ready starting point for Model Context Protocol (MCP) servers.",
     problem:
       "MCP is becoming the standard way AI clients call external tools, and every new server rewrites the same scaffolding. This is the boring-but-critical 80% done right, so the next one starts at mile 10.",
     architecture: [
@@ -54,7 +62,8 @@ export const projects: Project[] = [
   },
   {
     title: "leakguard",
-    tagline: "A zero-dependency secret scanner that stops credentials before they go public.",
+    tagline:
+      "A zero-dependency secret scanner that stops credentials before they go public.",
     problem:
       "A leaked key in git history is irreversible — public commits are scraped within minutes and the only fix is rotation. leakguard catches secrets at commit time, when they're still cheap to fix.",
     architecture: [
@@ -82,7 +91,8 @@ export const projects: Project[] = [
   },
   {
     title: "Video → Social Cuts Pipeline",
-    tagline: "Turns one long recording into platform-ready social cuts, automatically.",
+    tagline:
+      "Turns one long recording into platform-ready social cuts, automatically.",
     problem:
       "Manually editing a long video into vertical Reels/Shorts with captions is hours of repetitive work. This automates the reframe, format, and caption burn-in.",
     architecture: [
@@ -95,7 +105,8 @@ export const projects: Project[] = [
   },
   {
     title: "Browser Automation Framework",
-    tagline: "A reusable Playwright harness for driving real web apps headlessly.",
+    tagline:
+      "A reusable Playwright harness for driving real web apps headlessly.",
     problem:
       "One-off scraping and automation scripts rot fast. This is the durable backbone: typed actions, retries on flake, structured output, and evidence for every run.",
     architecture: [

@@ -167,7 +167,11 @@ body::before {
   }
 }
 .card-glow:hover {
-  border-color: color-mix(in oklab, var(--color-accent) 45%, var(--color-border));
+  border-color: color-mix(
+    in oklab,
+    var(--color-accent) 45%,
+    var(--color-border)
+  );
   box-shadow:
     0 0 0 1px color-mix(in oklab, var(--color-accent) 12%, transparent),
     0 18px 40px -24px color-mix(in oklab, var(--color-accent) 55%, transparent);
