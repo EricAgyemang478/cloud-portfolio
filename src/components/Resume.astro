@@ -1,0 +1,88 @@
+---
+import { Icon } from "astro-icon/components";
+import Section from "./Section.astro";
+import { site } from "../data/site";
+
+const resumeUrl = site.links.resume;
+const hasResume = Boolean(resumeUrl);
+---
+
+<Section id="resume" eyebrow="Résumé" title="The one-pager">
+  <div
+    class="card-glow flex flex-col gap-6 rounded-xl border border-border bg-surface p-6 sm:flex-row sm:items-center sm:justify-between"
+  >
+    <div class="flex items-start gap-4">
+      <span
+        class="grid size-11 shrink-0 place-items-center rounded-lg border border-border bg-surface-2 text-accent"
+      >
+        <Icon name="lucide:file-text" class="size-5" />
+      </span>
+      <div>
+        <h3 class="flex flex-wrap items-center gap-x-2 font-semibold text-text">
+          Résumé
+          {
+            site.resumeUpdated && (
+              <span class="font-mono text-xs font-normal text-faint">
+                Updated {site.resumeUpdated}
+              </span>
+            )
+          }
+        </h3>
+        <p class="mt-1 max-w-md text-sm leading-relaxed text-muted">
+          {
+            hasResume
+              ? "A one-page summary of my experience, stack, and what I'm looking for."
+              : "Coming soon. In the meantime, the fastest way to get it is to reach out — happy to send it over."
+          }
+        </p>
+      </div>
+    </div>
+
+    <div class="flex shrink-0 flex-wrap gap-3">
+      {
+        hasResume && (
+          <a
+            href={resumeUrl}
+            download
+            class="inline-flex items-center gap-2 rounded-lg bg-accent px-5 py-2.5 text-sm font-semibold text-accent-contrast transition hover:opacity-90"
+          >
+            <Icon name="lucide:download" class="size-4" />
+            Download PDF
+          </a>
+        )
+      }
+      {
+        hasResume && (
+          <a
+            href={resumeUrl}
+            target="_blank"
+            rel="noreferrer"
+            class="inline-flex items-center gap-2 rounded-lg border border-border-strong px-5 py-2.5 text-sm font-medium text-text transition hover:border-accent hover:text-accent"
+          >
+            <Icon name="lucide:external-link" class="size-4" />
+            View
+          </a>
+        )
+      }
+      {
+        !hasResume && (
+          <span class="inline-flex items-center gap-2 rounded-lg border border-border-strong px-4 py-2.5 text-sm font-medium text-faint">
+            <Icon name="lucide:clock" class="size-4" />
+            Coming soon
+          </span>
+        )
+      }
+      {
+        !hasResume && (
+          <a
+            href={`mailto:${site.email}`}
+            class="inline-flex items-center gap-2 rounded-lg border border-border-strong px-5 py-2.5 text-sm font-medium text-text transition hover:border-accent hover:text-accent"
+          >
+            <Icon name="lucide:mail" class="size-4" />
+            Request via email
+          </a>
+        )
+      }
+    </div>
+  </div>
+</Section>

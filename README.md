@@ -77,6 +77,11 @@ Almost everything personal lives in three files — no need to touch markup:
 Re-theme the whole site by changing `--color-accent` in
 [`src/styles/global.css`](src/styles/global.css).
 
+**Add your résumé:** drop a PDF in [`public/`](public/) (e.g. `eric-opoku-resume.pdf`)
+and set `links.resume` in [`src/data/site.ts`](src/data/site.ts) to its path
+(e.g. `/eric-opoku-resume.pdf`). The Résumé section and the hero/footer buttons
+switch from "coming soon" to **Download / View** automatically.
+
 ## Deployment
 
 Deploys run automatically once the two secrets below exist. See

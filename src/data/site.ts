@@ -26,8 +26,14 @@ export const site = {
   links: {
     github: "https://github.com/your-handle",
     linkedin: "https://www.linkedin.com/in/your-handle",
-    resume: "", // e.g. "/resume.pdf" — drop the file in /public to enable
+    // Drop a PDF in /public (e.g. public/eric-opoku-resume.pdf) and set the path
+    // here (e.g. "/eric-opoku-resume.pdf") to light up the Résumé section and the
+    // hero/footer résumé buttons. Leave "" to show the "coming soon" placeholder.
+    resume: "",
   },
+
+  // Optional label on the résumé card, e.g. "June 2026". Leave "" to hide.
+  resumeUpdated: "",
 
   // Shown in the footer + meta tags.
   siteUrl: "https://cloud-portfolio.pages.dev",
